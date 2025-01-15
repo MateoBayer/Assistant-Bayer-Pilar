@@ -19,7 +19,7 @@ async function callMyGenAssist(messages) {
             headers: {
                 'accept': 'application/json',
                 //'Authorization': `Bearer ${import.meta.env.VITE_MYGENASSIST_API_KEY}` // We'll set this up later
-                'Authorization': 'Bearer 9c1863af8d49366e524bd13f86937cb0ace0d97b',
+                'Authorization': `Bearer ${import.meta.env.VITE_MYGENASSIST_API_KEY}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({

@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react';
 import './ChatbotInterface.css';  // We'll create this next
 import ChatWindow from "./ChatWindow"
+import Navbar from "./Navbar"
 
 const chatbots = [
+    { name: 'VestiBOT', color: '#5865F2', icon: '🖼️' },
     { name: 'GPT-4', color: '#19C37D', icon: '🤖' },
     { name: 'Claude', color: '#9747FF', icon: '🧠' },
     { name: 'Gemini', color: '#1A73E8', icon: '💫' },
     { name: 'Llama', color: '#FF6B6B', icon: '🦙' },
-    { name: 'DALL-E', color: '#FF9A3C', icon: '🎨' },
-    { name: 'Midjourney', color: '#5865F2', icon: '🖼️' }
+    { name: 'DALL-E', color: '#FF9A3C', icon: '🎨' }
 ];
 
 
@@ -19,7 +20,6 @@ async function callMyGenAssist(messages) {
             method: 'POST',
             headers: {
                 'accept': 'application/json',
-                //'Authorization': `Bearer ${import.meta.env.VITE_MYGENASSIST_API_KEY}` // We'll set this up later
                 'Authorization': `Bearer ${import.meta.env.VITE_MYGENASSIST_API_KEY}`,
                 'Content-Type': 'application/json'
             },
@@ -114,6 +114,7 @@ const ChatbotInterface = () => {
 
     return (
         <div>
+            <Navbar/>
             <div className="chatbot-grid">
                 {chatbots.map((chatbot) => (
                     <ChatbotButton

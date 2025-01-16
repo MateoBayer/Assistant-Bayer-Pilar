@@ -3,7 +3,6 @@ import React from 'react'
 import MarkdownToHtml from './MarkdownToHtml'
 
 export default function TestMarkdown() {
-/*
     const markdownText = `
 # This is a header
 
@@ -19,8 +18,7 @@ console.log(hello);
 
 [This is a link](https://www.google.com)
 `
-*/
-    const markdownText = "hola"
+
     return (
         <div style={{ padding: '20px' }}>
             <h2>Original Text:</h2>

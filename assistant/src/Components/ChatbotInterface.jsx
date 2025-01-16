@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import './ChatbotInterface.css';  // We'll create this next
-import MarkdownToHtml from './MarkdownToHtml';
 import ChatWindow from "./ChatWindow"
 
 const chatbots = [
@@ -40,8 +39,6 @@ async function callMyGenAssist(messages) {
         }
 
         const data = await response.json();
-        // responseHtml = data.choices[0]["message"]["content"]
-        // responseToMarkdown = MarkdownToHtml(text={responseHtml})
         return data.choices[0]["message"]["content"]; // Adjust according to actual API response structure
     } catch (error) {
         console.error('API Error:', error);

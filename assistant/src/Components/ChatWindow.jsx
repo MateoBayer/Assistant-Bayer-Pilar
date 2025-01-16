@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import './ChatbotInterface.css';  // We'll create this next
+import "./ChatWindow.css";
 import MarkdownToHtml from './MarkdownToHtml';
 
 

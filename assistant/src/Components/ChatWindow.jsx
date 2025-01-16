@@ -4,11 +4,13 @@ import MarkdownToHtml from './MarkdownToHtml';
 
 
 // Message Component
-const Message = ({ text, isUser }) => (
-    <div className={`message ${isUser ? 'user-message' : 'bot-message'}`}>
-        {text}
-    </div>
-);
+const Message = ({ text, isUser }) => {
+    return (
+        <div className={`message ${isUser ? 'user-message' : 'bot-message'}`}>
+            <MarkdownToHtml text={text}/>
+        </div>
+    )
+};
 
 // Chat Window
 const ChatWindow = ({ chatbot, onClose, messages, onSendMessage, isLoading }) => {

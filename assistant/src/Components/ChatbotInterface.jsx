@@ -2,19 +2,19 @@ import { useState, useEffect } from 'react';
 import './ChatbotInterface.css';  // We'll create this next
 import ChatWindow from "./ChatWindow"
 import Navbar from "./Navbar"
+//import askQuestionToAssistant from "./ApiCalls"
 
 const chatbots = [
-    { name: 'VestiBOT', color: '#5865F2', icon: '🖼️' },
-    { name: 'GPT-4', color: '#19C37D', icon: '🤖' },
-    { name: 'Claude', color: '#9747FF', icon: '🧠' },
-    { name: 'Gemini', color: '#1A73E8', icon: '💫' },
-    { name: 'Llama', color: '#FF6B6B', icon: '🦙' },
-    { name: 'DALL-E', color: '#FF9A3C', icon: '🎨' }
+    { name: 'VestiBOT', color: '#5865F2', icon: '🖼️',id: '962e8e6e-602e-4d53-93cc-fe3bff1e65be' },
+    { name: 'Traductor a Ingles', color: '#19C37D', icon: '🤖',id: '882202bf-24ca-440e-ba71-4e28e77aaa84' },
+    { name: 'Claude', color: '#9747FF', icon: '🧠', id: '962e8e6e-602e-4d53-93cc-fe3bff1e65be'},
+    { name: 'Gemini', color: '#1A73E8', icon: '💫', id: '962e8e6e-602e-4d53-93cc-fe3bff1e65be' },
+    { name: 'Llama', color: '#FF6B6B', icon: '🦙', id: '962e8e6e-602e-4d53-93cc-fe3bff1e65be' },
+    { name: 'DALL-E', color: '#FF9A3C', icon: '🎨', id: '962e8e6e-602e-4d53-93cc-fe3bff1e65be' }
 ];
 
-
-// Add this function to handle API calls
-async function callMyGenAssist(messages) {
+// POST question to assistant
+async function askQuestionToAssistant(messages, id) {
     try {
         const response = await fetch('https://chat.int.bayer.com/api/v2/chat/agent', {  // Replace with actual API endpoint
             method: 'POST',
@@ -29,7 +29,7 @@ async function callMyGenAssist(messages) {
                     role: 'user',
                     content: msg.text
                 })),
-                assistant_id: '962e8e6e-602e-4d53-93cc-fe3bff1e65be',
+                assistant_id: id,
                 model: 'gpt-4o-mini',
             }),
         });
@@ -66,7 +66,7 @@ const ChatbotInterface = () => {
     const handleChatbotClick = (chatbot) => {
         setCurrentChatbot(chatbot);
         setMessages([{
-            text: `Hello! I'm ${chatbot.name}. How can I help you today?`,
+            text: `Hazle una pregunta inicial al asistente ${chatbot.name}`,
             isUser: false
         }]);
     };
@@ -77,7 +77,7 @@ const ChatbotInterface = () => {
     };
 
     // Modified handleSendMessage to use the API
-    const handleSendMessage = async (message) => {
+    const handleSendMessage = async (message, currentChatbot) => {
         try {
             // Add user message
             const newMessages = [
@@ -90,7 +90,8 @@ const ChatbotInterface = () => {
             setIsLoading(true);
 
             // Call API
-            const response = await callMyGenAssist(newMessages);
+            // id = currentChatbot.id
+            const response = await askQuestionToAssistant(newMessages, currentChatbot.id);
 
             // Add bot response
             setMessages(prevMessages => [
@@ -102,7 +103,7 @@ const ChatbotInterface = () => {
             setMessages(prevMessages => [
                 ...prevMessages,
                 { 
-                    text: "Sorry, I encountered an error. Please try again.",
+                    text: "Disculpa, un error a sucedido. Intentalo de nuevo.",
                     isUser: false,
                     isError: true
                 }
@@ -113,8 +114,8 @@ const ChatbotInterface = () => {
     };
 
     return (
-        <div>
-            <Navbar/>
+        <div className='container'>
+            {/* <Navbar/> */}
             <div className="chatbot-grid">
                 {chatbots.map((chatbot) => (
                     <ChatbotButton

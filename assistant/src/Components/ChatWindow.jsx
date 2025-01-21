@@ -18,7 +18,7 @@ const ChatWindow = ({ chatbot, onClose, messages, onSendMessage, isLoading }) =>
 
     const handleSend = () => {
         if (inputMessage.trim() && !isLoading) {
-            onSendMessage(inputMessage);
+            onSendMessage(inputMessage, chatbot);
             setInputMessage('');
         }
     };
@@ -46,7 +46,7 @@ const ChatWindow = ({ chatbot, onClose, messages, onSendMessage, isLoading }) =>
                 ))}
                 {isLoading && (
                     <div className="loading-indicator">
-                        <span>Typing...</span>
+                        <span>Pensando...</span>
                     </div>
                 )}
             </div>
@@ -56,14 +56,14 @@ const ChatWindow = ({ chatbot, onClose, messages, onSendMessage, isLoading }) =>
                     value={inputMessage}
                     onChange={(e) => setInputMessage(e.target.value)}
                     onKeyPress={handleKeyPress}
-                    placeholder="Type a message..."
+                    placeholder="Escribi un mensaje..."
                     disabled={isLoading}
                 />
                 <button 
                     onClick={handleSend}
                     disabled={isLoading}
                 >
-                    Send
+                    Enviar
                 </button>
             </div>
         </div>

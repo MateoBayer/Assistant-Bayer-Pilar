@@ -4,6 +4,11 @@
     gap: 20px;
     margin-bottom: 20px;
     padding: 20px;
+    box-sizing: border-box; /* Esto se debe poner siempre ya que ajusta el tamanio del borde solo*/
+    overflow: auto;
+    flex-flow: row wrap;
+    width: 50%;
+    justify-content: center;
 }
 
 .chatbot-button {
@@ -51,4 +56,15 @@
 .chat-input button:disabled {
     opacity: 0.6;
     cursor: not-allowed;
+}
+
+.container {
+    background-image: url('https://bayer-dso-prod-w01.azure.cnb/images/backgroundImage.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items:baseline;
+    min-height: 100vh;    
 }

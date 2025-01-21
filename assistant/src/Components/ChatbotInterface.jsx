@@ -113,8 +113,8 @@ const ChatbotInterface = () => {
     };
 
     return (
-        <div>
-            <Navbar/>
+        <div className='container'>
+            {/* <Navbar/> */}
             <div className="chatbot-grid">
                 {chatbots.map((chatbot) => (
                     <ChatbotButton
